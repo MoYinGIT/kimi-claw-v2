@@ -3,8 +3,8 @@
  * Agent system inspired by Claude Code architecture
  */
 
-export { Tool, ToolInput, ToolOutput, ToolMetadata, ToolProgress, PermissionRequirement, ToolCategory } from './Tool.js';
-export { ToolRegistry, globalToolRegistry, RegisteredTool } from './ToolRegistry.js';
+export { Tool, ToolInput, ToolOutput, ToolMetadata, ToolProgress, PermissionRequirement, ToolCategory, type RegisteredTool } from './Tool.js';
+export { ToolRegistry, globalToolRegistry } from './ToolRegistry.js';
 export { ToolExecutor, ExecutionContext, ExecutionResult, PermissionPrompt } from './ToolExecutor.js';
 export { 
   PermissionManager, 

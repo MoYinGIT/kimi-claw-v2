@@ -425,6 +425,3 @@ export class SmartContextManager {
     }, 0);
   }
 }
-
-// Exports
-export { ContextCompressor };

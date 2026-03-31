@@ -149,8 +149,9 @@ export class MCPServer {
    */
   private async executeTool(name: string, args: unknown): Promise<unknown> {
     // Check if tool is allowed
-    if (this.config.allowedTools?.length > 0 && 
-        !this.config.allowedTools.includes(name)) {
+    const allowedTools = this.config?.allowedTools;
+    if (allowedTools && allowedTools.length > 0 && 
+        !allowedTools.includes(name)) {
       throw new Error(`Tool "${name}" is not allowed`);
     }
 
@@ -167,7 +168,7 @@ export class MCPServer {
       sessionId: `mcp-${Date.now()}`,
       userId: 'mcp-client',
       timestamp: new Date(),
-      permissions: this.permissionManager.getConfig().rules
+      permissions: this.permissionManager.getConfig()
     };
 
     // Execute tool

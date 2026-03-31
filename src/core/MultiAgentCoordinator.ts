@@ -240,7 +240,17 @@ export class MultiAgentCoordinator extends EventEmitter {
         sessionId: `multi-agent-${taskId}`,
         userId: assignment.agentId,
         timestamp: new Date(),
-        permissions: { alwaysAllow: [], alwaysDeny: [], alwaysAsk: [] }
+        permissions: {
+          version: '1.0.0',
+          rules: { alwaysAllow: [], alwaysDeny: [], alwaysAsk: [] },
+          toolOverrides: {},
+          settings: {
+            defaultPermissionLevel: 'ask' as const,
+            logAllExecutions: true,
+            maxExecutionHistory: 1000,
+            showPermissionPrompts: true
+          }
+        }
       };
 
       // Run Agent
@@ -489,13 +499,3 @@ export function createMultiAgentCoordinator(
 ): MultiAgentCoordinator {
   return new MultiAgentCoordinator(toolRegistry, sessionManager, config);
 }
-
-// Export types
-export type {
-  AgentDefinition,
-  TaskAssignment,
-  TaskResult,
-  AgentMessage,
-  CoordinatorConfig,
-  CollaborationStrategy
-};

@@ -91,11 +91,30 @@ export class KIMI_CLAW {
     
     // Setup execution context
     const pmConfig = this.permissionManager.getConfig();
+    const userPerms = config.permissions;
+    // Support both direct permission format and nested rules format
+    let permissions: PermissionConfig;
+    if (userPerms && 'rules' in userPerms) {
+      permissions = userPerms;
+    } else if (userPerms) {
+      // Convert flat format to nested format
+      permissions = {
+        ...pmConfig,
+        rules: {
+          alwaysAllow: (userPerms as any).alwaysAllow || [],
+          alwaysDeny: (userPerms as any).alwaysDeny || [],
+          alwaysAsk: (userPerms as any).alwaysAsk || []
+        }
+      };
+    } else {
+      permissions = pmConfig;
+    }
+    
     this.context = {
       sessionId: config.sessionId || `session-${Date.now()}`,
       userId: config.userId || 'anonymous',
       timestamp: new Date(),
-      permissions: config.permissions || pmConfig.rules
+      permissions
     };
 
     // Initialize Agent Loop if enabled
@@ -143,7 +162,7 @@ export class KIMI_CLAW {
     userConfirm?: boolean
   ): Promise<ExecutionResult | PermissionPrompt> {
     // Update context with current permission rules
-    this.context.permissions = this.permissionManager.getConfig().rules;
+    this.context.permissions = this.permissionManager.getConfig();
     
     // Log user message
     this.sessionManager.appendMessage({
@@ -182,7 +201,7 @@ export class KIMI_CLAW {
       );
     }
 
-    this.context.permissions = this.permissionManager.getConfig().rules;
+    this.context.permissions = this.permissionManager.getConfig();
     return this.agentLoop.run(query, this.context);
   }
 

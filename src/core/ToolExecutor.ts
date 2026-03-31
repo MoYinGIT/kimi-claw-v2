@@ -5,18 +5,13 @@
 
 import { Tool, ToolOutput, PermissionRequirement } from './Tool.js';
 import { ToolRegistry } from './ToolRegistry.js';
+import { PermissionConfig } from './PermissionManager.js';
 
 export interface ExecutionContext {
   sessionId: string;
   userId: string;
   timestamp: Date;
   permissions: PermissionConfig;
-}
-
-export interface PermissionConfig {
-  alwaysAllow: string[];  // Tool names or patterns
-  alwaysDeny: string[];   // Tool names or patterns
-  alwaysAsk: string[];    // Tool names or patterns
 }
 
 export interface ExecutionResult {
@@ -53,19 +48,20 @@ export class ToolExecutor {
     config: PermissionConfig
   ): { decision: 'allowed' | 'denied' | 'ask'; reason?: string } {
     const name = tool.metadata.name;
+    const rules = config.rules;
 
     // Check always deny list
-    if (this.matchesPattern(name, config.alwaysDeny)) {
+    if (this.matchesPattern(name, rules.alwaysDeny)) {
       return { decision: 'denied', reason: 'Tool is in always-deny list' };
     }
 
     // Check always allow list
-    if (this.matchesPattern(name, config.alwaysAllow)) {
+    if (this.matchesPattern(name, rules.alwaysAllow)) {
       return { decision: 'allowed' };
     }
 
     // Check always ask list
-    if (this.matchesPattern(name, config.alwaysAsk)) {
+    if (this.matchesPattern(name, rules.alwaysAsk)) {
       return { 
         decision: 'ask',
         reason: tool.describeAction(input as Parameters<typeof tool.describeAction>[0])

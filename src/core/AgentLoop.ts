@@ -227,7 +227,7 @@ export class AgentLoop {
    */
   private async determineNextAction(): Promise<{
     type: 'thought' | 'tool_call' | 'final_answer';
-    content?: string;
+    content: string;
     toolName?: string;
     toolInput?: unknown;
   }> {
@@ -240,6 +240,7 @@ export class AgentLoop {
       if (this.state.query.includes('search') || this.state.query.includes('find')) {
         return {
           type: 'tool_call',
+          content: `Searching for: ${this.state.query}`,
           toolName: 'WebSearchTool',
           toolInput: { query: this.state.query }
         };
@@ -248,6 +249,7 @@ export class AgentLoop {
       if (this.state.query.includes('read') || this.state.query.includes('file')) {
         return {
           type: 'tool_call',
+          content: 'Reading file...',
           toolName: 'FileReadTool',
           toolInput: { path: './example.txt' }
         };

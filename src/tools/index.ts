@@ -11,7 +11,8 @@ export { BashTool } from './BashTool.js';
 export { MessageTool } from './MessageTool.js';
 
 // Tool registry setup helper
-import { globalToolRegistry, ToolCategory } from '../core/ToolRegistry.js';
+import { globalToolRegistry } from '../core/ToolRegistry.js';
+import { ToolCategory } from '../core/Tool.js';
 import { WebSearchTool } from './WebSearchTool.js';
 import { FileReadTool } from './FileReadTool.js';
 import { FileWriteTool } from './FileWriteTool.js';

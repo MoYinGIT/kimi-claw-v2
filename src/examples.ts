@@ -8,9 +8,19 @@ import { KIMI_CLAW } from './index.js';
 async function example1() {
   const kimi = new KIMI_CLAW({
     permissions: {
-      alwaysAllow: ['WebSearchTool', 'FileReadTool'],
-      alwaysAsk: ['FileWriteTool', 'BashTool', 'AgentTool'],
-      alwaysDeny: []
+      version: '1.0.0',
+      rules: {
+        alwaysAllow: ['WebSearchTool', 'FileReadTool'],
+        alwaysAsk: ['FileWriteTool', 'BashTool', 'AgentTool'],
+        alwaysDeny: []
+      },
+      toolOverrides: {},
+      settings: {
+        defaultPermissionLevel: 'ask' as const,
+        logAllExecutions: true,
+        maxExecutionHistory: 1000,
+        showPermissionPrompts: true
+      }
     }
   });
 
@@ -27,9 +37,19 @@ async function example1() {
 async function example2() {
   const kimi = new KIMI_CLAW({
     permissions: {
-      alwaysAllow: [],
-      alwaysAsk: ['BashTool'],
-      alwaysDeny: []
+      version: '1.0.0',
+      rules: {
+        alwaysAllow: [],
+        alwaysAsk: ['BashTool'],
+        alwaysDeny: []
+      },
+      toolOverrides: {},
+      settings: {
+        defaultPermissionLevel: 'ask' as const,
+        logAllExecutions: true,
+        maxExecutionHistory: 1000,
+        showPermissionPrompts: true
+      }
     }
   });
 
@@ -54,9 +74,19 @@ async function example2() {
 async function example3() {
   const kimi = new KIMI_CLAW({
     permissions: {
-      alwaysAllow: [],
-      alwaysAsk: [],
-      alwaysDeny: []
+      version: '1.0.0',
+      rules: {
+        alwaysAllow: [],
+        alwaysAsk: [],
+        alwaysDeny: []
+      },
+      toolOverrides: {},
+      settings: {
+        defaultPermissionLevel: 'ask' as const,
+        logAllExecutions: true,
+        maxExecutionHistory: 1000,
+        showPermissionPrompts: true
+      }
     }
   });
 
@@ -71,9 +101,19 @@ async function example3() {
 async function example4() {
   const kimi = new KIMI_CLAW({
     permissions: {
-      alwaysAllow: ['WebSearchTool'],
-      alwaysAsk: ['FileWriteTool'],
-      alwaysDeny: []
+      version: '1.0.0',
+      rules: {
+        alwaysAllow: ['WebSearchTool'],
+        alwaysAsk: ['FileWriteTool'],
+        alwaysDeny: []
+      },
+      toolOverrides: {},
+      settings: {
+        defaultPermissionLevel: 'ask' as const,
+        logAllExecutions: true,
+        maxExecutionHistory: 1000,
+        showPermissionPrompts: true
+      }
     }
   });
 
@@ -100,9 +140,19 @@ async function example4() {
 async function example5() {
   const kimi = new KIMI_CLAW({
     permissions: {
-      alwaysAllow: [],
-      alwaysAsk: ['AgentTool'],
-      alwaysDeny: []
+      version: '1.0.0',
+      rules: {
+        alwaysAllow: [],
+        alwaysAsk: ['AgentTool'],
+        alwaysDeny: []
+      },
+      toolOverrides: {},
+      settings: {
+        defaultPermissionLevel: 'ask' as const,
+        logAllExecutions: true,
+        maxExecutionHistory: 1000,
+        showPermissionPrompts: true
+      }
     }
   });
 

@@ -151,7 +151,7 @@ export class SessionManager {
     const index = this.readIndex();
     index.sessions.unshift({
       id: sessionId,
-      title: session.metadata.title,
+      title: session.metadata.title || 'Untitled Session',
       createdAt: now,
       updatedAt: now,
       messageCount: 0,
@@ -285,7 +285,7 @@ export class SessionManager {
     const index = this.readIndex();
     index.sessions.unshift({
       id: newSessionId,
-      title: newSession.metadata.title,
+      title: newSession.metadata.title || `Fork of ${parentSession.metadata.title || 'Untitled'}`,
       createdAt: now,
       updatedAt: now,
       messageCount: forkedMessages.length,

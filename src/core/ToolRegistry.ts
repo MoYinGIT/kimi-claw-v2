@@ -3,7 +3,9 @@
  * Central registry for all available tools
  */
 
-import { Tool, RegisteredTool, ToolCategory } from './Tool.js';
+import { Tool, type RegisteredTool, ToolCategory } from './Tool.js';
+
+export { RegisteredTool, ToolCategory } from './Tool.js';
 
 export class ToolRegistry {
   private tools: Map<string, RegisteredTool> = new Map();
@@ -36,7 +38,7 @@ export class ToolRegistry {
     if (!entry) return false;
 
     this.tools.delete(name);
-    this.categories.get(entry.category)?.delete(name);
+    this.categories.get(entry.category as ToolCategory)?.delete(name);
     return true;
   }
 
@@ -154,7 +156,7 @@ export class ToolRegistry {
       descriptions.push({
         name,
         description: entry.tool.metadata.description,
-        category: entry.category,
+        category: entry.category as ToolCategory,
         permission: entry.tool.permissionRequirement.level
       });
     }
