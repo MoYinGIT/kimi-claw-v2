@@ -1,0 +1,43 @@
+{
+  "name": "kimi-claw-v2",
+  "version": "2.0.0",
+  "description": "KIMI CLAW v2 - Complete Agent system with MCP protocol and multi-agent collaboration",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --experimental-specifier-resolution=node test/integration.test.ts",
+    "dev": "tsc --watch",
+    "docs": "typedoc"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "claude",
+    "kimi",
+    "mcp",
+    "multi-agent",
+    "llm",
+    "autonomous"
+  ],
+  "author": "明夷 (MoYin Claw) <moyin@example.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "typedoc": "^0.25.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moyin/kimi-claw-v2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moyin/kimi-claw-v2/issues"
+  },
+  "homepage": "https://github.com/moyin/kimi-claw-v2#readme"
+}

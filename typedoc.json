@@ -1,0 +1,48 @@
+/**
+ * TypeDoc configuration for KIMI CLAW v2
+ */
+
+export default {
+  // Entry points
+  entryPoints: ['src/index.ts'],
+  
+  // Output directory
+  out: './docs/api',
+  
+  // Theme
+  theme: 'default',
+  
+  // Options
+  excludePrivate: true,
+  excludeProtected: false,
+  excludeExternals: true,
+  
+  // Readme
+  readme: './README.md',
+  
+  // Title
+  name: 'KIMI CLAW v2',
+  
+  // Include
+  includeVersion: true,
+  
+  // Sort
+  sort: ['source-order'],
+  
+  // Category settings
+  categorizeByGroup: true,
+  categoryOrder: [
+    'Core',
+    'Agent',
+    'Tools',
+    'MCP',
+    'Multi-Agent',
+    '*'
+  ],
+  
+  // Navigation
+  navigation: {
+    includeCategories: true,
+    includeGroups: true
+  }
+};
